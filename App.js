@@ -1,6 +1,10 @@
 import { useRef, useState } from "react";
 import { StyleSheet, View } from "react-native";
 import { Canvas, useFrame } from "@react-three/fiber";
+import useControls from "r3f-native-orbitcontrols"
+import { Vector3 } from "three";
+
+
 
 function Box(props) {
   // This reference will give us direct access to the mesh
@@ -22,7 +26,10 @@ function Box(props) {
       {...props}
       ref={mesh}
       scale={active ? [1.5, 1.5, 1.5] : [1, 1, 1]}
-      onClick={(e) => setActive(!active)}
+      onClick={(e) => {
+        setActive(!active)
+        console.log("yooyoyoyoy")
+      }}
       onPointerOver={(e) => setHover(true)}
       onPointerOut={(e) => setHover(false)}
     >
@@ -35,10 +42,41 @@ function Box(props) {
   );
 }
 
+const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+    backgroundColor: "black",
+  },
+  canvas: {
+    flex: 1,
+  }
+});
+
 export default function App() {
+  const [OrbitControls, events] = useControls()
+
   return (
-    <View style={styles.container}>
-      <Canvas>
+    <View style={styles.container} {...events}>
+      <Canvas style={styles.canvas}>
+        <OrbitControls
+          enabled={true}
+          // target={[0, 0, 0]}
+          // minPolarAngle={2.0}
+          // maxPolarAngle={2.0}
+          // minAzimuthAngle={10.0}
+          // maxAzimuthAngle={10.0}
+          // dampingFactor={0.1}
+          enableZoom={true}
+          // zoomSpeed={100}
+          minZoom={0.0}
+          maxZoom={1000.0}
+          enableRotate={true}
+          rotateSpeed={1.0}
+          // enablePan={false}
+          // panSpeed={1.0}
+
+        />
+
         <ambientLight />
         <pointLight position={[10, 10, 10]} />
         <Box position={[-1.2, 0, 0]} />
@@ -47,10 +85,3 @@ export default function App() {
     </View>
   );
 }
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: "black",
-  },
-});

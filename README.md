@@ -23,3 +23,29 @@ Create Three.js projects using React components and props!
 - [react-three-fiber docs](https://github.com/react-spring/react-three-fiber)
 - [three.js docs](https://threejs.org/docs/)
 - [expo-three docs](https://github.com/expo/expo-three)
+
+
+
+## Yarn directions
+To run your project, navigate to the directory and run one of the following yarn commands.
+
+- cd span
+- yarn android
+- yarn ios
+- yarn web
+
+
+
+# Important pointer stuff
+<mesh
+  onClick={(e) => console.log("click")}
+  onWheel={(e) => console.log("wheel spins")}
+  onPointerUp={(e) => console.log("up")}
+  onPointerDown={(e) => console.log("down")}
+  onPointerOver={(e) => console.log("over")}
+  onPointerOut={(e) => console.log("out")}
+  onPointerEnter={(e) => console.log("enter")}
+  onPointerLeave={(e) => console.log("leave")}
+  onPointerMove={(e) => console.log("move")}
+  onUpdate={(self) => console.log("props have been updated")}
+/>
